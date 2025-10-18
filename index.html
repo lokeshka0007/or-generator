@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR GENERATOR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background: #f0f0f0;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .div {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR GENERATOR</h1>
+    <input id="input" placeholder="ENTER ANYTHING TO CONVERT TO QR"/>
+    <button id="button">SUBMIT</button>
+    <div class="div"></div>
+
+    <!-- Include QRCode.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const button = document.getElementById("button");
+        const results = document.querySelector(".div");
+
+        button.addEventListener("click", function() {
+            const text = document.getElementById("input").value;
+
+            // Clear previous QR code
+            results.innerHTML = "";
+
+            // Generate QR code
+            new QRCode(results, {
+                text: text,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        });
+    </script>
+</body>
+</html>
